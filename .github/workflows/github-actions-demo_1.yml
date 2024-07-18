@@ -23,8 +23,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - run: |
+          echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
+
+      - uses: actions/checkout@v3.3.0
+
+      - name: List files in the repository
+        run: |
+          echo "The repository ${{ github.repository }} contains the following files:"
+          tree
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
