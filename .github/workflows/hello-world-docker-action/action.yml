@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Example Workflow Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      who-to-greet:
+        description: Who to greet in the log
+        required: true
+        default: 'World'
+        type: string
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  say-hello:
+      name: Say Hello
+      runs-on: ubuntu-latest
+  
+    # Steps represent a sequence of tasks that will be executed as part of the job
+      steps:
+        - name: Print to Log
+          id: print-to-log
+          uses: actions/hello-world-docker-action@main
+          with:
+            who-to-greet: ${{ inputs.who-to-greet }}
